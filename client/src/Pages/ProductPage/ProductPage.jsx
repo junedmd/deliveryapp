@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './ProductPage.css';
 import ProductCard from '../../Components/ProductCard/ProductCard';
 import Sidebar from '../../Components/Sidebar/Sidebar';
+import Footer from '../../Components/Footer/Footer';
 
 function ProductPage() {
     const [products, setProducts] = useState([]);
@@ -50,6 +51,8 @@ function ProductPage() {
     const uniqueCategories = [...new Set(products.map((p) => p.category))];
 
     return (
+        <>
+        
         <div className="product-page">
             <Sidebar
                 searchTerm={searchTerm}
@@ -76,6 +79,8 @@ function ProductPage() {
                 </div>
             </main>
         </div>
+            <Footer/>
+            </>
     );
 }
 
