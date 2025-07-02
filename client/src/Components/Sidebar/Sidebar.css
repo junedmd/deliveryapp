@@ -1,0 +1,43 @@
+.sidebar {
+  width: 220px;
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.filter-section {
+  margin-bottom: 20px;
+}
+
+.filter-section h4 {
+  margin-bottom: 8px;
+}
+
+.filter-section input {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filter-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.filter-section ul li {
+  margin-bottom: 6px;
+  cursor: pointer;
+  color: #333;
+}
+
+.filter-section ul li.active {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.rating-filter {
+  margin: 6px 0;
+  cursor: pointer;
+  color: #444;
+}

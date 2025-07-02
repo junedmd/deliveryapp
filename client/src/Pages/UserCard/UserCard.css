@@ -1,0 +1,38 @@
+.user-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.user-card {
+  background-color: #fefefe;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  transition: 0.2s ease-in-out;
+}
+
+.user-card:hover {
+  border-color: #007aff;
+}
+
+.user-card h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.user-card p {
+  font-size: 0.9rem;
+  margin: 4px 0;
+  color: #555;
+}
+
+.loader {
+  text-align: center;
+  margin-top: 40px;
+  font-weight: bold;
+  color: #333;
+}
