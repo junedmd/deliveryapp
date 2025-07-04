@@ -56,16 +56,23 @@ body {
   justify-content: flex-start; /* push them slightly left of edge */
   margin-left: 40px;
 }
-
-.navbar-right a,
+.right-links{
+  color: #07070737;
+}
+.navbar-right a{
+ text-decoration: none; 
+ color: #0a0a0a;
+}
 .dropbtn {
-  background: none;
+  background: transparent;
+  color: #0a0a0a; /* Keep this white */
+  font-size: 16px;
+  width: 100px;
   border: none;
-  color: #333;
-  font-size: 1rem;
-  text-decoration: none;
   cursor: pointer;
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .dropdown {
@@ -75,9 +82,10 @@ body {
 .dropdown-content {
   display: none;
   position: absolute;
-  top: 28px;
+  
+  top: 35px;
   left: 0;
-  background-color: white;
+  
   border: 1px solid #ddd;
   border-radius: 4px;
   min-width: 160px;
@@ -94,10 +102,80 @@ body {
 
 .dropdown-content a:hover {
   background-color: #f0f0f0;
+  
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+.btn-user{
+  background-color: rgb(14, 15, 15);
+  font-weight: 100;
+}
+/* USER PROFILE DROPDOWN */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+}
+
+.dropbtn {
+  background: transparent;
+  color: white;
+ 
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dropbtn span {
+  color: #0d0d0c; 
+  font-weight: 600;
+}
+.dropbtn:hover {
+  opacity: 0.9;
+}
+
+.dropdown-content {
+  display: none;
+  
+  position: absolute;
+  right: 0;
+  background-color: white;
+  min-width: 140px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 99;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.dropdown-content button.logout-btn {
+  background: none;
+  color: #e2e9eb;
+  
+  padding: 12px 16px;
+  width: 100px;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.dropdown-content button.logout-btn:hover {
+  background-color: #5998cf;
+  width: 100px;
+  font-weight: 100;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.user-profile-btn svg {
+  font-size: 22px;
+  color: rgb(15, 15, 15);
 }
 
 @media (max-width: 768px) {

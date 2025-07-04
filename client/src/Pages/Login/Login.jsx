@@ -1,75 +1,72 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './Login.css';
-import Navbar from '../../Components/Navbar/Navbar';
-import { Link } from 'react-router';
+import { useState } from "react";
+import axios from "axios";
+import "./Login.css"; 
+import Navbar from "../../components/Navbar/Navbar";
+import { Link } from "react-router-dom";
 
-const Login = () => {
-  const [form, setForm] = useState({ username: '', password: '' });
-  const [message, setMessage] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+export default function Login() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+    const handleLogin = async () => {
+        try {
+            const response = await axios.post('/api/login/users', {
+                email,
+                password,
+            });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setMessage('');
+            if (response?.data?.success) {
+                alert(response.data.message);
+                localStorage.setItem("user",JSON.stringify(response?.data?.data));
+                window.location.href = "/";
+            } else {
+                alert(response.data.message || "Login failed");
+            }
 
-    try {
-      const response = await axios.post('https://fakestoreapi.com/auth/login', form);
-      localStorage.setItem('token', response.data.token); // ✅ Store token
-      setIsLoggedIn(true);
-      setMessage('Login successful!');
-    } catch (err) {
-      console.error(err);
-      setMessage('Login failed. Check your credentials.');
-    }
-  };
+            setEmail("");
+            setPassword("");
+        } catch (error) {
+            console.error("Login error:", error);
+            alert("Something went wrong during login");
+        }
+    };
 
-  const handleLogout = () => {
-    localStorage.removeItem('token'); // ✅ Clear token
-    setIsLoggedIn(false);
-    setMessage('Logged out.');
-  };
+    return (
+        <div>
+            <Navbar />
+            <form className="form-container">
+                <h1 className="text-center">Login</h1>
 
-  return (
-    <>
-    
-    <Navbar/>
-    <div className="login-container">
-      <h2>{isLoggedIn ? 'Welcome!' : 'Login'}</h2>
+                <input
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="inputfields"
+                />
 
-      {!isLoggedIn ? (
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="username"
-            className='input'
-            placeholder="Username"
-            required
-            onChange={handleChange}
-          />
-          <input
-            type="password"
-            name="password"
-            className='input'
-            placeholder="Password"
-            required
-            onChange={handleChange}
-          />
-          <button type="submit">Login</button>
-        </form>
-      ) : (
-        <button onClick={handleLogout}>Logout</button>
-      )}
+                <input
+                    type="password"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="inputfields"
+                />
 
-      {message && <p>{message}</p>}
-      <p>Are you a new User? <Link to={"/signup"}> Click</Link></p>
-    </div>
-    </>
-  );
-};
+                <button
+                    type="button"
+                    className="btn"
+                    onClick={handleLogin}
+                >
+                    Login
+                </button>
 
-export default Login;
+                <p>
+                    <Link to="/signup" className="sign-link">
+                        Don’t have an account? Sign Up
+                    </Link>
+                </p>
+            </form>
+        </div>
+    );
+}

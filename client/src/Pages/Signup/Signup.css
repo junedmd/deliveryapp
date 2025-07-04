@@ -1,41 +1,75 @@
-.register-container,
-.login-container {
-  max-width: 400px;
+/* Signup.css */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #f1f2f6, #dff9fb);
+}
+
+.form-container {
+  max-width: 420px;
   margin: 60px auto;
-  padding: 30px;
-  background: #f9f9f9;
-  border-radius: 20px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px 35px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
+.text-center {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  color: #2d3436;
+  font-size: 28px;
+  font-weight: 600;
 }
 
-form{
-  display: flex;
-  flex-direction: column;
+.inputfields {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: 1px solid #dcdde1;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #f5f6fa;
+  transition: all 0.3s ease;
 }
 
-input{
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #adabab;
-  border-radius: 20px;
+.inputfields:focus {
+  border-color: #0984e3;
+  outline: none;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(9, 132, 227, 0.3);
 }
 
-button{
-  padding: 10px;
-  background-color: #007aff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-p{
-  text-align: center;
+.btn {
+  width: 100%;
+  padding: 12px;
   margin-top: 15px;
-  font-weight: bold;
+  background-color: #0984e3;
+  color: white;
+  font-size: 17px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #74b9ff;
+}
+
+.sign-link {
+  color: #0984e3;
+  text-decoration: none;
+  display: block;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 15px;
+  transition: color 0.3s ease;
+}
+
+.sign-link:hover {
+  color: #40739e;
+  text-decoration: underline;
 }

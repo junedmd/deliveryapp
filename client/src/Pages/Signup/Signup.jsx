@@ -1,52 +1,107 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from "react";
 import axios from 'axios';
-import './Signup.css';
-import Navbar from '../../Components/Navbar/Navbar';
-const Signup = () => {
-    const [form, setForm] = useState({
-        id: '',
-        username: '',
-        email: '',
-        password: ''
-    });
+import "./Signup.css";
+import Navbar from "../../components/Navbar/Navbar";
+import { Link } from "react-router-dom";
 
-    const [message, setMessage] = useState('');
+export default function Signup() {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [address, setAddress] = useState("");
 
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
+    useEffect(() => {
+        const store = JSON.parse(localStorage.getItem("user") || "{}");
+        if (store?.name) {
+            alert("You already signed up");
+            window.location.href = "/";
+        }
+    }, []);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setMessage('');
-
+    const handleSignup = async () => {
         try {
-            const response = await axios.post('https://fakestoreapi.com/users', form);
-            console.log(response.data);
-            setMessage('Registration successful!');
-        } catch (err) {
-            console.error(err);
-            setMessage('Something went wrong.');
+            const response = await axios.post('/api/users', {
+                name,
+                email,
+                password,
+                address,
+            });
+
+            if (response?.data?.success) {
+
+                alert(response.data.message);
+                window.location.href = "/login";
+               
+            } else {
+                alert(response.data.message || "Signup failed");
+            }
+
+           
+            setName("");
+            setEmail("");
+            setPassword("");
+            setAddress("");
+
+        } catch (error) {
+            console.error("Signup error:", error);
+            alert("Something went wrong during signup");
         }
     };
 
     return (
-        <>
-
+        <div>
             <Navbar />
-            <div className="register-container">
-                <h2>SignUp</h2>
-                <form onSubmit={handleSubmit}>
-                    <input type="number" name="id" placeholder="ID" className='input' required onChange={handleChange} />
-                    <input type="text" name="username" placeholder="Username"  className='input' required onChange={handleChange} />
-                    <input type="email" name="email" placeholder="Email" className='input' required onChange={handleChange} />
-                    <input type="password" name="password" placeholder="Password"  className='input' required onChange={handleChange} />
-                    <button type="submit">SignUp</button>
-                </form>
-                {message && <p>{message}</p>}
-            </div>
-        </>
-    );
-};
+            <form className="form-container">
+                <h1 className="text-center">Sign Up</h1>
 
-export default Signup;
+                <input
+                    type="text"
+                    placeholder="Enter your name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="inputfields"
+                />
+
+                <input
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="inputfields"
+                />
+
+                <input
+                    type="password"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="inputfields"
+                />
+
+               
+
+                <input
+                    type="text"
+                    placeholder="Enter your address"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    className="inputfields"
+                />
+
+                <button
+                    type="button"
+                    className="btn"
+                    onClick={handleSignup}
+                >
+                    Signup
+                </button>
+
+                <p>
+                    <Link to="/login" className="sign-link">
+                        Already have an account?
+                    </Link>
+                </p>
+            </form>
+        </div>
+    );
+}
