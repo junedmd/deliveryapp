@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
+const API = import.meta.env.VITE_API_URL;
 import "./Login.css"; 
-import Navbar from "../../components/Navbar/Navbar";
+// import Navbar from "../../components/Navbar/Navbar";
+import Navbar from "../../Components/Navbar/Navbar";
 import { Link } from "react-router-dom";
 
 export default function Login() {
@@ -10,7 +12,7 @@ export default function Login() {
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post('/api/login/users', {
+            const response = await axios.post(`${API}/api/login/users`, {
                 email,
                 password,
             });

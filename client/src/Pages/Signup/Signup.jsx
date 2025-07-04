@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
+const API = import.meta.env.VITE_API_URL;
 import "./Signup.css";
-import Navbar from "../../components/Navbar/Navbar";
+import Navbar from "../../Components/Navbar/Navbar";
 import { Link } from "react-router-dom";
 
 export default function Signup() {
@@ -20,7 +21,7 @@ export default function Signup() {
 
     const handleSignup = async () => {
         try {
-            const response = await axios.post('/api/users', {
+            const response = await axios.post(`${API}/api/users`, {
                 name,
                 email,
                 password,

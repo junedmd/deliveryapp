@@ -2,10 +2,14 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-
+import cors from 'cors';
 dotenv.config();
 const app =express()
 app.use(express.json());
+app.use(cors({
+    origin: ['http://localhost:5173', 'https://deliveryapp-ochre-one.vercel.app/'], 
+    credentials: true 
+}));
 import { postUser,postLogin, getUser } from "./controllers/user.js";
 
 const PORT=process.env.PORT || 5000;
