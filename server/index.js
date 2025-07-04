@@ -7,9 +7,9 @@ dotenv.config();
 const app =express()
 app.use(express.json());
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://deliveryapp-ochre-one.vercel.app/'], 
+    origin: ['http://localhost:5173', 'https://deliveryapp-mfnf.vercel.app/login'], 
     credentials: true 
-}));
+}));  
 import { postUser,postLogin, getUser } from "./controllers/user.js";
 
 const PORT=process.env.PORT || 5000;

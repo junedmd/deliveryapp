@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+const API = import.meta.env.VITE_API_URL;
 import './UserCard.css';
 import Navbar from '../../Components/Navbar/Navbar';
 
@@ -8,9 +9,10 @@ const UserCard = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('https://fakestoreapi.com/users')
+    axios.get(`${API}/api/users`)
       .then(res => {
         setUsers(res.data);
+        console.log(res.data);
         setLoading(false);
       })
       .catch(err => {
@@ -25,13 +27,15 @@ const UserCard = () => {
     <>
     <Navbar/>
     <div className="user-grid">
-      {users.map(user => (
+
+      { console.log(users?.data)}
+      {users.data?.map(user => (
         <div className="user-card" key={user.id}>
           <h3>{user.name.firstname} {user.name.lastname}</h3>
-          <p><strong>Username:</strong> {user.username}</p>
+          <p><strong>Username:</strong> {user.name}</p>
           <p><strong>Email:</strong> {user.email}</p>
-          <p><strong>Phone:</strong> {user.phone}</p>
-          <p><strong>City:</strong> {user.address.city}</p>
+          <p><strong>Password:</strong> {user.password}</p>
+          <p><strong>City:</strong> {user.address}</p>
         </div>
       ))}
     </div>
