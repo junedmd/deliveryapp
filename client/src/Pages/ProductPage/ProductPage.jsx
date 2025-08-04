@@ -13,11 +13,12 @@ function ProductPage() {
 
     // Fetch products from Fake Store API
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products')
+        fetch('https://dummyjson.com/products')
             .then((res) => res.json())
             .then((data) => {
-                setProducts(data);
-                setFiltered(data);
+                setProducts(data.products);
+                setFiltered(data.products);
+                        
             })
             .catch((error) => console.error('Failed to fetch products:', error));
     }, []);
